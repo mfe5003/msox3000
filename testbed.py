@@ -50,7 +50,7 @@ from time import sleep
 
 # Set to the IP address of the oscilloscope
 #@@@#agilent_msox_3034a = 'TCPIP0::172.28.36.206::INSTR'
-agilent_msox_3034a = 'TCPIP0::mx3034a-sdg1.phys.virginia.edu::INSTR'
+agilent_msox_3034a = 'TCPIP0::192.168.10.142::INSTR'
 
 import argparse
 parser = argparse.ArgumentParser(description='Get a screen capture from Agilent/KeySight MSO3034A scope and save it to a file')
@@ -75,42 +75,42 @@ scope.open()
 print(scope.idn())
 
 print("Output file: %s" % fn )
-#@@@#scope.hardcopy(fn)
-#@@@#scope.waveform(fn+"_1.csv", 1)
-#@@@#scope.waveform(fn+"_2.csv", 2)
-#@@@#scope.waveform(fn+"_3.csv", 3)
-#@@@#scope.waveform(fn+"_4.csv", 4)
+scope.hardcopy(fn)
+scope.waveform(fn+"_1.csv", 1)
+scope.waveform(fn+"_2.csv", 2)
+scope.waveform(fn+"_3.csv", 3)
+scope.waveform(fn+"_4.csv", 4)
 
-#chan = 1
-#print("Ch.{}: {}V ACRMS".format(chan,scope.measureDVMacrms(chan)))
-#print("Ch.{}: {}V DC".format(chan,scope.measureDVMdc(chan)))
-#print("Ch.{}: {}V DCRMS".format(chan,scope.measureDVMdcrms(chan)))
-#print("Ch.{}: {}Hz FREQ".format(chan,scope.measureDVMfreq(chan)))
+chan = 1
+print("Ch.{}: {}V ACRMS".format(chan, scope.measureDVMacrms(chan)))
+print("Ch.{}: {}V DC".format(chan, scope.measureDVMdc(chan)))
+print("Ch.{}: {}V DCRMS".format(chan, scope.measureDVMdcrms(chan)))
+print("Ch.{}: {}Hz FREQ".format(chan, scope.measureDVMfreq(chan)))
 
-#scope.setupSave(fn+".stp")
+# scope.setupSave(fn+".stp")
 
-#@@@#scope.setupAutoscale(1)
-#@@@#scope.setupAutoscale(2)
-#@@@#scope.setupAutoscale(3)
+# scope.setupAutoscale(1)
+# scope.setupAutoscale(2)
+# scope.setupAutoscale(3)
 
-#scope.setupLoad(fn+".stp")
+# scope.setupLoad(fn+".stp")
 
 if False:
-    wait = 0.5 # just so can see if happen
-    for chan in range(1,5):
-        scope.outputOn(chan,wait)
+    wait = 0.5  # just so can see if happen
+    for chan in range(1, 5):
+        scope.outputOn(chan, wait)
 
-        for chanEn in range(1,5):
+        for chanEn in range(1, 5):
             if (scope.isOutputOn(chanEn)):
                 print("Channel {} is ON.".format(chanEn))
             else:
                 print("Channel {} is off.".format(chanEn))
         print()
         
-    for chan in range(1,5):
-        scope.outputOff(chan,wait)
+    for chan in range(1, 5):
+        scope.outputOff(chan, wait)
 
-        for chanEn in range(1,5):
+        for chanEn in range(1, 5):
             if (scope.isOutputOn(chanEn)):
                 print("Channel {} is ON.".format(chanEn))
             else:
@@ -118,7 +118,7 @@ if False:
         print()
                 
     scope.outputOnAll(wait)
-    for chanEn in range(1,5):
+    for chanEn in range(1, 5):
         if (scope.isOutputOn(chanEn)):
             print("Channel {} is ON.".format(chanEn))
         else:
@@ -126,7 +126,7 @@ if False:
     print()
 
     scope.outputOffAll(wait)
-    for chanEn in range(1,5):
+    for chanEn in range(1, 5):
         if (scope.isOutputOn(chanEn)):
             print("Channel {} is ON.".format(chanEn))
         else:

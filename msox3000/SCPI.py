@@ -221,9 +221,9 @@ class SCPI(object):
     # Guide and modified to work within this class ...
     # =========================================================
     def _instQueryIEEEBlock(self, queryStr):
-        if (queryStr[0] != '*'):
+        if queryStr[0] != '*':
             queryStr = self._prefix + queryStr
-        #print("QUERYIEEEBlock:",queryStr)
+        # print("QUERYIEEEBlock:", queryStr)
         result = self._inst.query_binary_values(queryStr, datatype='s')
         self.checkInstErrors(queryStr)
         return result[0]
