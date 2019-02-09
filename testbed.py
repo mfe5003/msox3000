@@ -67,12 +67,27 @@ while os.path.isfile(fn + fn_ext):
 fn += fn_ext
 
 from msox3000 import MSOX3000
+from msox3000.generator import GeneratorSettings
+from msox3000.trigger import TriggerSettings
+from msox3000.timebase import TimebaseSettings
 
 ## Connect to the Power Supply with default wait time of 100ms
 scope = MSOX3000(agilent_msox_3034a)
 scope.open()
 
 print(scope.idn())
+
+gsettings = GeneratorSettings()
+gsettings.write(scope)
+
+tsettings = TriggerSettings()
+tsettings.write(scope)
+
+tbsettings = TimebaseSettings()
+tbsettings.write(scope)
+
+# display capture fails
+sleep(3)
 
 print("Output file: %s" % fn )
 scope.hardcopy(fn)

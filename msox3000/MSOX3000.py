@@ -1161,6 +1161,13 @@ class MSOX3000(SCPI):
         'Average - Full Screen': ['V', measureVoltAverage],
         'RMS - Full Screen': ['V', measureVoltRMS],
         }
+
+    def setTrigger(self, trigger):
+        """Takes a trigger object and applies all changes to the scope state."""
+
+        for setting in trigger:
+            setting.write(self)
+
             
 if __name__ == '__main__':
     import argparse
